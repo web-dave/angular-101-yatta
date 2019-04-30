@@ -1,0 +1,9 @@
+<ul *ngIf="book">
+  <h4>{{ book.title }}</h4>
+  <div>
+    {{ book.isbn }}
+    <button (click)="selectThisBook()" class="btn btn-info btn-sm">
+      show me more
+    </button>
+  </div>
+</ul>

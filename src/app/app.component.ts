@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { color } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'yatta';
+  color = color;
 }
