@@ -25,5 +25,6 @@
     Not a valid ISBN
   </div>
 
-  <button type="submit" [disabled]="form.invalid">Save</button>
+  <button type="submit" [disabled]="!form.valid">Save</button>
 </form>
+<a routerLink="..">Back</a>

@@ -10,8 +10,16 @@
       [(ngModel)]="book.title"
       #title="ngModel"
     />
-    <div [hidden]="!title.errors?.required || title.pristine">
-      Enter a Title
+    <input
+      type="number"
+      id="numPages"
+      name="numPages"
+      required
+      [(ngModel)]="book.numPages"
+      #numPages="ngModel"
+    />
+    <div [hidden]="!numPages.errors?.required || numPages.pristine">
+      Enter a numPages
     </div>
   </div>
   <!-- <div class="form-group">

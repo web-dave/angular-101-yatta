@@ -11,6 +11,7 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
+import { tap, map, switchMap } from 'rxjs/operators';
 
 export class LoadBook implements OnInit, OnChanges {
   @Input() foo = 'Moin';
@@ -26,11 +27,18 @@ export class LoadBook implements OnInit, OnChanges {
     console.log('-->', changes);
   }
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.service.getBook(params.isbn).subscribe(b => {
+    // this.route.params.subscribe(params => {
+    //   this.service.getBook(params.isbn).subscribe(b => {
+    //     this.book = b;
+    //     this.cdr.detectChanges();
+    //   });
+    // });
+
+    this.route.params
+      .pipe(switchMap(params => this.service.getBook(params.isbn)))
+      .subscribe(b => {
         this.book = b;
         this.cdr.detectChanges();
       });
-    });
   }
 }

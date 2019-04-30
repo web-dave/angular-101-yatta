@@ -23,8 +23,4 @@ export class BookDetailsComponent extends LoadBook {
   ) {
     super(route, service, cdr);
   }
-
-  add(a, b) {
-    return a + b;
-  }
 }

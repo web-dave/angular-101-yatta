@@ -10,6 +10,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 })
 export class BookNewComponent implements OnInit {
   form: FormGroup;
+  saved = false;
   constructor(
     private formBuilder: FormBuilder,
     private service: BooksService,
@@ -34,6 +35,12 @@ export class BookNewComponent implements OnInit {
     });
   }
 
+  isSaved(): boolean {
+    console.log(this.form);
+    return this.form.pristine;
+    // return this.saved || this.form.pristine;
+  }
+
   saveBook() {
     const book = {
       ...this.service.newBook(),
@@ -41,6 +48,8 @@ export class BookNewComponent implements OnInit {
     };
 
     this.service.createBook(book).subscribe(b => {
+      // this.saved = true;
+      this.form.markAsPristine();
       this.router.navigate(['..', b.isbn], { relativeTo: this.route });
     });
   }
