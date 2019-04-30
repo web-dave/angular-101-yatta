@@ -17,6 +17,10 @@ export class BooksService {
     const url = this.restRoot;
     return this.http.get<IBook[]>(url);
   }
+  getBook(isbn): Observable<IBook> {
+    const url = `${this.restRoot}/${isbn}`;
+    return this.http.get<IBook>(url);
+  }
   getBooksTXT(): Observable<IBook[]> {
     const url = this.restRoot;
     return this.http.get(url, { observe: 'response' }).pipe(
