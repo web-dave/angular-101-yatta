@@ -7,27 +7,24 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { BooksService } from '../shared/books.service';
 import { IBook } from '../shared/book';
+import { LoadBook } from '../shared/loadBook';
 
 @Component({
   selector: 'app-book-details',
   templateUrl: './book-details.component.html',
   styleUrls: ['./book-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.Default
 })
-export class BookDetailsComponent implements OnInit {
-  book: IBook;
+export class BookDetailsComponent extends LoadBook {
   constructor(
-    private route: ActivatedRoute,
-    private service: BooksService,
-    private cdr: ChangeDetectorRef
-  ) {}
+    route: ActivatedRoute,
+    service: BooksService,
+    cdr: ChangeDetectorRef
+  ) {
+    super(route, service, cdr);
+  }
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.service.getBook(params.isbn).subscribe(b => {
-        this.book = b;
-        this.cdr.detectChanges();
-      });
-    });
+  add(a, b) {
+    return a + b;
   }
 }

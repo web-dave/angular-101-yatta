@@ -21,6 +21,32 @@ export class BooksService {
     const url = `${this.restRoot}/${isbn}`;
     return this.http.get<IBook>(url);
   }
+
+  updateBook(book): Observable<IBook> {
+    const url = `${this.restRoot}/${book.isbn}`;
+    return this.http.patch<IBook>(url, book);
+  }
+
+  createBook(book: IBook): Observable<IBook> {
+    const url = this.restRoot;
+    return this.http.post<IBook>(url, book);
+  }
+
+  newBook(): IBook {
+    return {
+      title: '',
+      subtitle: '',
+      isbn: '',
+      abstract: '',
+      numPages: 0,
+      author: '',
+      publisher: {
+        name: '',
+        url: ''
+      }
+    };
+  }
+
   getBooksTXT(): Observable<IBook[]> {
     const url = this.restRoot;
     return this.http.get(url, { observe: 'response' }).pipe(

@@ -1,14 +1,17 @@
 <h4>Book List</h4>
+<a [routerLink]="['new']" class="btn btn-default btn-sm">
+  NEW
+</a>
 <ul>
   <app-book-preview
     *ngFor="let book of book$ | async"
     [book]="book"
     (bookselected)="selectBook($event)"
   ></app-book-preview>
-  <hr />
+  <!-- <hr />
   <app-book-preview
     *ngFor="let book of books"
     [book]="book"
     (bookselected)="selectBook($event)"
-  ></app-book-preview>
+  ></app-book-preview> -->
 </ul>
